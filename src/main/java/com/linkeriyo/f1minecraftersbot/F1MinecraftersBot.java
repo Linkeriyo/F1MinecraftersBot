@@ -1,23 +1,24 @@
+package com.linkeriyo.f1minecraftersbot;
 
-import jdk.nashorn.internal.parser.JSONParser;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import javax.security.auth.login.LoginException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class F1MinecraftersBot {
 
-    public static String DATABASE_NAME = "sqlite";
+    public static String DATABASE_NAME = "C:\\sqlite";
     public static String CONFIG_NAME = "files/config.json";
     public static JSONObject config;
-    public static String token;
+    public static String token, prefix;
+    public static String url = "jdbc:sqlite:" + DATABASE_NAME;
+    public static DiscordConnection discordConnection;
 
     public static void main(String[] args) {
         if (databaseExists()) {
@@ -32,6 +33,13 @@ public class F1MinecraftersBot {
             return;
         }
         token = config.getString("token");
+        prefix = config.getString("prefix");
+
+        try {
+            discordConnection = new DiscordConnection(token);
+        } catch (LoginException e) {
+            e.printStackTrace();
+        }
     }
 
     public static boolean databaseExists() {
@@ -41,7 +49,8 @@ public class F1MinecraftersBot {
     public static boolean connectToDatabase() {
         Connection connection = null;
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:./" + DATABASE_NAME);
+            connection = DriverManager.getConnection(url);
+            System.out.println(connection.getSchema());
             System.out.println("Connection to SQLite has been established.");
             return true;
         } catch (SQLException e) {

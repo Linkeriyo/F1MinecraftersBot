@@ -1,2 +1,10 @@
-F1MinecraftersBot.java
- F1MinecraftersBot
+com/linkeriyo/f1minecraftersbot/commands/Command.java
+ com.linkeriyo.f1minecraftersbot.commands.Command
+com/linkeriyo/f1minecraftersbot/DiscordConnection.java
+ com.linkeriyo.f1minecraftersbot.DiscordConnection
+com/linkeriyo/f1minecraftersbot/MessageListener.java
+ com.linkeriyo.f1minecraftersbot.MessageListener
+com/linkeriyo/f1minecraftersbot/commands/CreateProfileCommand.java
+ com.linkeriyo.f1minecraftersbot.commands.CreateProfileCommand
+com/linkeriyo/f1minecraftersbot/F1MinecraftersBot.java
+ com.linkeriyo.f1minecraftersbot.F1MinecraftersBot

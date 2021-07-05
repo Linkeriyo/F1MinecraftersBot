@@ -11,3 +11,17 @@ CREATE TABLE penalty(
     FOREIGN KEY(penaltyuser) REFERENCES user_profile(pk)
 );
 
+CREATE TABLE circuit(
+    pk INTEGER PRIMARY KEY,
+    circuitname TEXT NOT NULL,
+    circuitcountry TEXT NOT NULL,
+    infourl TEXT NOT NULL
+);
+
+CREATE TABLE hotlap(
+    pk INTEGER PRIMARY KEY,
+    lapcircuit INTEGER NOT NULL,
+    laptime REAL NOT NULL,
+    lapdate TEXT NOT NULL,
+    FOREIGN KEY (lapcircuit) REFERENCES circuit(pk)
+);
